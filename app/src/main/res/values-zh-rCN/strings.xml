@@ -3,4 +3,13 @@
     <string name="app_name">Lab1</string>
     <string name="hello_message">你好!</string>
     <string name="ButtonText">I\'m a button</string>
+    <string name="login_message">Login</string>
+    <string name="login_hint">请输入用户名</string>
+    <string name="password_message">密码</string>
+    <string name="password_hint">请输入密码</string>
+    <string name="checkbox_text">复选框</string>
+    <string name="radio_text">单选框</string>
+    <string name="switch_text">启用</string>
+    <string name="image_text">星星</string>
+
 </resources>
