@@ -50,17 +50,17 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences sp = this.getSharedPreferences(LOGIN,Context.MODE_PRIVATE);
         String emailS = sp.getString(EMAIL,"email@domain.com");
         Log.d(EMAIL +"is: ", emailS);
-        EditText emailView = (EditText) findViewById(R.id.editText);
+        final EditText emailView = (EditText) findViewById(R.id.editText);
         emailView.setText(emailS);
 
         Button loginButton = (Button) findViewById(R.id.button2);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText mEmailView = (EditText) findViewById(R.id.editText);
+              //  EditText mEmailView = (EditText) findViewById(R.id.editText);
 //                EditText mPasswordView = (EditText) findViewById(R.id.editText2);
 
-                String email = mEmailView.getText().toString();
+                String email = emailView.getText().toString();
 //                String password = mPasswordView.getText().toString();
                 //======== To save data to preference file LOGINDETAILS===================
                 SharedPreferences sp = getSharedPreferences(LOGIN ,Context.MODE_PRIVATE);
