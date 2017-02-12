@@ -20,5 +20,8 @@
     <string name="ok">Yes</string>
     <string name="cancel">No</string>
     <string name="my_info">My information to share</string>
+    <string name="buttonStartChat">Start Chat</string>
+    <string name="textview">TextView</string>
+    <string name="incvoming">incvoming</string>
 
 </resources>
