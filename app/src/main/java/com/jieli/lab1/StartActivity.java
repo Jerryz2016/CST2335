@@ -37,6 +37,16 @@ public class StartActivity extends AppCompatActivity {
                                           }
                                       }
         );
+        Button weatherButton = (Button) findViewById(R.id.weatherButton);
+        weatherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(ACTIVITY_NAME,"User clicked Weather Forecast Button");
+                Intent intent = new Intent(getApplicationContext(), WeatherForecast.class);
+                startActivity(intent);
+
+            }
+        });
     }
     protected void  onActivityResult(int requestCode, int resultCode, Intent data){
         Log.i(ACTIVITY_NAME, "Returned to StartActivity.onActivityResult");
@@ -50,14 +60,15 @@ public class StartActivity extends AppCompatActivity {
 
 
     }
-    protected void onResume(){
-        super.onResume();
-        Log.i(ACTIVITY_NAME, "In onResume()");
-    }
     protected void onStart(){
         super.onStart();
         Log.i(ACTIVITY_NAME, "In onStart()");
     }
+    protected void onResume(){
+        super.onResume();
+        Log.i(ACTIVITY_NAME, "In onResume()");
+    }
+
     protected void onPause(){
         super.onPause();
         Log.i(ACTIVITY_NAME, "In onPause()");
