@@ -1,5 +1,29 @@
 <resources>
-    <string name="app_name">Lab1</string>
+    <string name="app_name">Lab6</string>
     <string name="hello_message">Hello World!</string>
     <string name="ButtonText">I\'m a button</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="login_message">Login</string>
+    <string name="password_message">Password</string>
+    <string name="login_hint">login name</string>
+    <string name="password_hint">Password</string>
+    <string name="login">login</string>
+    <string name="checkbox_text">CheckBox</string>
+    <string name="radio_text">RadioButton</string>
+    <string name="switch_text">Enable something</string>
+    <string name="image_text">a star</string>
+
+    <string name="switch_on">Switch is On</string>
+    <string name="switch_off">Switch is Off</string>
+    <string name="dialog_message">Do you want to finish the activity?</string>
+    <string name="dialog_title">Alert Dialog</string>
+    <string name="ok">Yes</string>
+    <string name="cancel">No</string>
+    <string name="my_info">My information to share</string>
+    <string name="buttonStartChat">Start Chat</string>
+    <string name="textview">TextView</string>
+    <string name="incvoming">incvoming</string>
+    <!--Lab6-->
+    <string name="weather_forcast">Weather Forcast</string>>
+
 </resources>
