@@ -3,11 +3,15 @@
     package="com.jieli.lab1">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera"
-                   android:required="true" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <supports-screens android:requiresSmallestWidthDp="600" />
 
     <application
         android:allowBackup="true"
@@ -44,7 +48,8 @@
             -->
         </activity>
         <activity android:name=".ChatWindow" />
-        <activity android:name=".WeatherForecast"/>
+        <activity android:name=".WeatherForecast" />
+        <activity android:name=".MessageDetails"></activity>
     </application>
 
 </manifest>
