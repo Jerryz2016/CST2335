@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--icons below are from https://icons8.com/web-app/new-icons/android-->
+    <item
+        android:id="@+id/action_one"
+
+        android:icon="@drawable/stubble96"
+        android:orderInCategory="101"
+        android:title="@string/menu_item1"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_two"
+        android:icon="@drawable/sideburns96"
+
+        android:orderInCategory="122"
+        android:title="@string/menu_item2"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_three"
+        android:icon="@drawable/shortbeard96"
+        android:orderInCategory="133"
+        android:title="@string/menu_item3"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_four"
+
+        android:orderInCategory="144"
+        android:title="@string/menu_item4"
+        app:showAsAction="never" />
+
+</menu>

@@ -46,7 +46,7 @@ public class ChatWindow extends AppCompatActivity {
         list.setAdapter(messageAdapter);
 
         cursor = db.query(false, ChatDatabaseHelper.TABLE_NAME,
-                new String[] { ChatDatabaseHelper.KEY_MESSAGE},
+                new String[] { ChatDatabaseHelper.KEY_MESSAGE, ChatDatabaseHelper.KEY_ID},
                 "Message not null", null,null,null,null,null);
        if (cursor != null) {
            int rows = cursor.getCount();
@@ -71,6 +71,10 @@ public class ChatWindow extends AppCompatActivity {
                     db.insert(ChatDatabaseHelper.TABLE_NAME,null,newValue);
                     messageAdapter.notifyDataSetChanged(); //this restarts the process of getCount(),getView()
                     text.setText("");
+                    // new message added into db, update the cursor for fragement
+                    cursor = db.query(false, ChatDatabaseHelper.TABLE_NAME,
+                            new String[] { ChatDatabaseHelper.KEY_MESSAGE, ChatDatabaseHelper.KEY_ID},
+                            "Message not null", null,null,null,null,null);
                 }
                 else{
                     CharSequence warning = "Blank message cannot be sent!";
@@ -95,7 +99,7 @@ public class ChatWindow extends AppCompatActivity {
                     bundle.putBoolean("isTablet",true);
                     MessageFragment frag = new MessageFragment();
                     frag.setArguments(bundle);
-                    getFragmentManager().beginTransaction().add(R.id.framelayout1,frag).commit();
+                    getFragmentManager().beginTransaction().replace(R.id.framelayout1,frag).commit();
                 }
                 //lab7-step 3 if is a phone, transition to empty Activity that has FrameLayout
                 else
@@ -112,13 +116,27 @@ public class ChatWindow extends AppCompatActivity {
     }
     //lab7-delete clicked item from the listview
     public void deleteMessage(int id) {
-//       int del= db.delete(ChatDatabaseHelper.TABLE_NAME, "_id=?",new String[]{Integer.toString(id)});
-        int del= db.delete(ChatDatabaseHelper.TABLE_NAME, "Message =?",new String[]{mess.get(id)});
-        mess.remove(id);
+      db.delete(ChatDatabaseHelper.TABLE_NAME, "_id=?",new String[]{Integer.toString(id)});
+        // int del= db.delete(ChatDatabaseHelper.TABLE_NAME, "Message =?",new String[]{mess.get(id)});
+        cursor = db.query(false, ChatDatabaseHelper.TABLE_NAME,
+                new String[] { ChatDatabaseHelper.KEY_MESSAGE, ChatDatabaseHelper.KEY_ID},
+                "Message not null", null,null,null,null,null);
+        mess.clear();
+        if (cursor != null) {
+            int rows = cursor.getCount();
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()){
+                mess.add(cursor.getString(cursor.getColumnIndex(ChatDatabaseHelper.KEY_MESSAGE)));
+                Log.i("ChatWinow ACTIVITY","SQL MESSAGE:" + cursor.getString(cursor.getColumnIndex(ChatDatabaseHelper.KEY_MESSAGE)));
+                Log.i("ChatWinow ACTIVITY", "cursor's column count = "+cursor.getColumnCount());
+                Log.i("ChatWinow ACTIVITY", "cursor's row number = " +cursor.getPosition());
+                cursor.moveToNext();
+            }
+        }
         messageAdapter.notifyDataSetChanged();
 
-        MessageFragment mf = (MessageFragment)getFragmentManager().findFragmentById(R.id.framelayout1);
-        getFragmentManager().beginTransaction().remove(mf).commit();
+  //      MessageFragment mf = (MessageFragment)getFragmentManager().findFragmentById(R.id.framelayout1);
+ //       getFragmentManager().beginTransaction().remove(mf).commit();
 
     }
 
@@ -126,12 +144,25 @@ public class ChatWindow extends AppCompatActivity {
         if (requestCode == 3 && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             int  delID = (int)extras.get("Delete");
+            deleteMessage(delID);
+            /*
             String message = (String)extras.get("Message");
-            db.execSQL("delete from "+ChatDatabaseHelper.TABLE_NAME+" where Message = " + message);
+         //   db.delete(ChatDatabaseHelper.TABLE_NAME, "Message =?",new String[]{mess.get(id)});
+           db.execSQL("delete from "+ChatDatabaseHelper.TABLE_NAME+" where Message =" + message);
+         //   db.execSQL("delete from "+ChatDatabaseHelper.TABLE_NAME+" where Message ="+"abcd" );
+         //   db.execSQL("delete from "+ChatDatabaseHelper.TABLE_NAME+" where Message ="+"bcde" );
+            cursor = db.query(false, ChatDatabaseHelper.TABLE_NAME,
+                    new String[] { ChatDatabaseHelper.KEY_MESSAGE, ChatDatabaseHelper.KEY_ID},
+                    "Message not null", null,null,null,null,null);
+            if (cursor != null) {
+                int rows = cursor.getCount();
+                cursor.moveToFirst();
+            }
       //      int del=db.delete(ChatDatabaseHelper.TABLE_NAME, "_id=?",new String[]{ Integer.toString(delID)});
             Log.i("ChatW.onAResult.DelID: ", String.valueOf(delID));
-            mess.remove(delID);
+           // mess.remove(delID);
             messageAdapter.notifyDataSetChanged(); //this restarts the process of getCount(),getView()
+            */
         }
     }
 
@@ -142,6 +173,12 @@ public class ChatWindow extends AppCompatActivity {
         public int getCount(){              return mess.size();        }
         public String getItem(int position){
             return mess.get(position);
+        }
+        //
+        public long getItemId(int position)
+        {
+            cursor.moveToPosition(position);
+            return cursor.getLong(cursor.getColumnIndex( ChatDatabaseHelper.KEY_ID))       ;
         }
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater inflater = ChatWindow.this.getLayoutInflater();

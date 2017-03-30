@@ -60,6 +60,9 @@ public class MessageFragment extends Fragment {
                 if (isTablet) {
                     Log.i("MessageFragDel",Integer.toString(id));
                     ((ChatWindow) getActivity()).deleteMessage(id);
+                    MessageFragment mf = (MessageFragment)getFragmentManager().findFragmentById(R.id.framelayout1);
+                    getFragmentManager().beginTransaction().remove(mf).commit();
+
                 } else {
                     Intent data = new Intent();
                     data.putExtra("Delete", id);

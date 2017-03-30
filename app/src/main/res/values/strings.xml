@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab7</string>
+    <string name="app_name">Lab8</string>
     <string name="hello_message">Hello World!</string>
     <string name="ButtonText">I\'m a button</string>
     <string name="title_activity_login">LoginActivity</string>
@@ -17,14 +17,22 @@
     <string name="switch_off">Switch is Off</string>
     <string name="dialog_message">Do you want to finish the activity?</string>
     <string name="dialog_title">Alert Dialog</string>
-    <string name="ok">Yes</string>
-    <string name="cancel">No</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
     <string name="my_info">My information to share</string>
     <string name="buttonStartChat">Start Chat</string>
     <string name="textview">TextView</string>
     <string name="send_button">Send</string>
     <string name="incvoming">incvoming</string>
     <!--Lab6-->
-    <string name="weather_forcast">Weather Forcast</string>>
+    <string name="weather_forcast">Weather Forcast</string>
+    <string name="title_activity_test_toolbar">TestToolbar</string>
+    <!--Lab8-->
+    <string name="menu_item1">Opt1</string>
+    <string name="menu_item2">Opt2</string>
+    <string name="menu_item3">Opt3</string>
+    <string name="menu_item4">About</string>
+    <string name="alert_title">Do you want to go back?</string>
+
 
 </resources>
